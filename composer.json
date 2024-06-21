@@ -1,0 +1,30 @@
+{
+    "name": "kingbes/phprobot",
+    "description": "Desktop automation for PHP Windows",
+    "keywords": [
+        "Windows",
+        "PHP",
+        "Desktop automation"
+    ],
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "kingbes",
+            "email": "1164601554@qq.com"
+        }
+    ],
+    "require": {
+        "PHP": ">=8.1.0",
+        "ext-ffi": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "KingBes\\PhpRobot\\": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "sort-packages": true
+    }
+}
