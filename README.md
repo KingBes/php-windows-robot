@@ -119,3 +119,17 @@ public function pixel_color(int $x, int $y): array
 public function screen_size(): array
 {}
 ```
+
+# 实例一 `获取当前鼠标位置`
+
+```php
+// 引入
+use KingBes\PhpRobot\Mouse;
+
+// 实例
+$Mouse = new Mouse();
+// 获取鼠标当前指针位置
+$pos = $Mouse->mouse_pos();
+
+var_dump($pos);
+```
