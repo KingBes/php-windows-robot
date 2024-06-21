@@ -6,6 +6,14 @@ composer
 composer require kingbes/phprobot
 ```
 
+# 要求
+
+php `>=8.1.0`
+
+拓展 `FFI`
+
+系统 `Windows`
+
 # 文档
 
 ## 鼠标
