@@ -1,0 +1,1 @@
+g++ -DKEYBOARD_EXPORTS keyboard.cc -shared -o keyboard.dll
