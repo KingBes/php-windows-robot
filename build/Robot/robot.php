@@ -2,7 +2,21 @@
 
 declare(strict_types=1);
 
-namespace KingBes\PhpRobot;
+// use FFI;
+
+class Robot
+{
+    public FFI $ffi;
+
+    public function __construct()
+    {
+        if (PHP_OS_FAMILY != "Windows") {
+            throw new Exception("The OS must be windows!");
+        }
+        $header = file_get_contents(__DIR__ . DIRECTORY_SEPARATOR . "robot_php.h");
+        $this->ffi = FFI::cdef($header, "robot.dll");
+    }
+}
 
 /**
  * 鼠标 class
@@ -96,15 +110,6 @@ class Mouse extends Robot
         return $this;
     }
 
-    /**
-     * 鼠标平滑移动指定位置 function
-     *
-     * @param integer $x
-     * @param integer $y
-     * @param integer $duration_ms 毫秒
-     * @param string $tween 预览补间
-     * @return self
-     */
     public function move_mouse_smooth(int $x, int $y, int $duration_ms, string $tween): self
     {
         $start_pos = $this->ffi->mouse_pos();
@@ -126,21 +131,55 @@ class Mouse extends Robot
         return $this;
     }
 
-    /**
-     * 当前平滑移动鼠标 function
-     *
-     * @param integer $offset_x
-     * @param integer $offset_y
-     * @param integer $duration_ms 毫秒
-     * @param string $tween
-     * @return self
-     */
-    public function move_mouse_smooth_rel(int $offset_x, int $offset_y, int $duration_ms, string $tween): self
+    /* public function normalize_php(int $i, int $s): float
     {
-        $start_pos = $this->ffi->mouse_pos();
-        $dest_x = $offset_x + $start_pos->x;
-        $dest_y = $offset_y + $start_pos->y;
-        $this->move_mouse_smooth($dest_x, $dest_y, $duration_ms, $tween);
-        return $this;
+        return $this->ffi->normalize_php($i, $s);
+    }
+
+    public function tween(string $t, float $n): float
+    {
+        return $this->ffi->tween($t, $n);
+    } */
+}
+
+/**
+ * 屏幕 class
+ */
+class Screen extends Robot
+{
+    /**
+     * 获取屏幕指定位置的颜色rgb function
+     *
+     * @param integer $x
+     * @param integer $y
+     * @return array
+     */
+    public function pixel_color(int $x, int $y): array
+    {
+        $rgb = $this->ffi->pixel_color($x, $y);
+        return [
+            "r" => $rgb->r,
+            "g" => $rgb->g,
+            "b" => $rgb->b
+        ];
+    }
+
+    /**
+     * 获取屏幕大小 function
+     *
+     * @return array
+     */
+    public function screen_size(): array
+    {
+        $size = $this->ffi->screen_size();
+        return [
+            "width" => $size->width,
+            "height" => $size->height
+        ];
     }
 }
+
+$Mouse = new Mouse();
+$size = $Mouse->move_mouse_smooth(0, 0, 3000, "ease_in_out_bounce");
+
+// var_dump($size);

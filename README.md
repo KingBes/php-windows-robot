@@ -90,6 +90,31 @@ public function mouse_move_mouse(int $x, int $y): self
  */
 public function move_mouse_rel(int $offset_x, int $offset_y): self
 {}
+
+/**
+ * 鼠标平滑移动指定位置 function
+ *
+ * @param integer $x
+ * @param integer $y
+ * @param integer $duration_ms 毫秒
+ * @param string $tween 预览补间 参数请看下面 `预览补间` 说明
+ * @return self
+ */
+public function move_mouse_smooth(int $x, int $y, int $duration_ms, string $tween): self
+{}
+
+/**
+ * 当前平滑移动鼠标 function
+ *
+ * @param integer $offset_x
+ * @param integer $offset_y
+ * @param integer $duration_ms 毫秒
+ * @param string $tween 预览补间 参数请看下面 `预览补间` 说明
+ * @return self
+ */
+public function move_mouse_smooth_rel(int $offset_x, int $offset_y, int $duration_ms, string $tween): self
+{}
+
 ```
 
 ## 屏幕
@@ -189,6 +214,43 @@ sleep(5); //延迟5秒
 
 $Keyboard->onClickKey(65)
 ```
+
+# 预览补间 `可用的鼠标补间`
+
+你可以在这里预览补间: https://easings.net/
+
+- `linear`
+- `ease_in_quad`
+- `ease_out_quad`
+- `ease_in_out_quad`
+- `ease_in_cubic`
+- `ease_out_cubic`
+- `ease_in_out_cubic`
+- `ease_in_quart`
+- `ease_out_quart`
+- `ease_in_out_quart`
+- `ease_in_quint`
+- `ease_out_quint`
+- `ease_in_out_quint`
+- `ease_in_sine`
+- `ease_out_sine`
+- `ease_in_out_sine`
+- `ease_in_expo`
+- `ease_out_expo`
+- `ease_in_out_expo`
+- `ease_in_circ`
+- `ease_out_circ`
+- `ease_in_out_circ`
+- `ease_in_elastic`
+- `ease_out_elastic`
+- `ease_in_out_elastic`
+- `ease_in_back`
+- `ease_out_back`
+- `ease_in_out_back`
+- `ease_in_bounce`
+- `ease_out_bounce`
+- `ease_in_out_bounce`
+
 
 # 键盘的整数键码值
 
