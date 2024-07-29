@@ -132,7 +132,7 @@ class Mouse extends Robot
      * @param integer $offset_x
      * @param integer $offset_y
      * @param integer $duration_ms 毫秒
-     * @param string $tween
+     * @param string $tween 预览补间
      * @return self
      */
     public function move_mouse_smooth_rel(int $offset_x, int $offset_y, int $duration_ms, string $tween): self
