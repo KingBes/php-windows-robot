@@ -22,10 +22,26 @@ class Keyboard
     {
         $this->ffi->simulateKeyPress($key);
     }
+
+    public function pressKey(int $key): self
+    {
+        $this->ffi->pressKey($key);
+        return $this;
+    }
+
+    public function releaseKey(int $key): self
+    {
+        $this->ffi->releaseKey($key);
+        return $this;
+    }
 }
 
 $Keyboard = new Keyboard;
 
+sleep(3);
+$Keyboard->pressKey(65);
+sleep(3);
+$Keyboard->releaseKey(65);
 /* while (true) {
     if ($Keyboard->isKeyPressed(65)) {
         echo "'A'";
@@ -33,6 +49,6 @@ $Keyboard = new Keyboard;
     usleep(100);
 } */
 
-sleep(5);
+/* sleep(5);
 
-$Keyboard->onClickKey(65);
+$Keyboard->onClickKey(65); */

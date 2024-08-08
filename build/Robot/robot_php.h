@@ -12,6 +12,8 @@ void mouse_left_drag(int x, int y);
 void mouse_drag_rel(int offset_x, int offset_y);
 void mouse_move_mouse(int x, int y);
 void move_mouse_rel(int offset_x, int offset_y);
+void mouse_down(const char *button);
+void mouse_up(const char *button);
 
 void move_mouse(int x, int y);
 double factor(const char *tween, int i, int steps);

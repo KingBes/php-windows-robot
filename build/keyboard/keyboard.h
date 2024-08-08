@@ -15,6 +15,10 @@ extern "C"
     KEYBOARD_API bool isKeyPressed(int key);
     // 默认点击了某按键
     KEYBOARD_API void simulateKeyPress(int keyCode);
+    // 按下某按键
+    KEYBOARD_API void pressKey(int keyCode);
+    // 弹起某按键
+    KEYBOARD_API void releaseKey(int keyCode);
 }
 #endif
 
@@ -38,6 +42,36 @@ void simulateKeyPress(int keyCode)
     input.ki.dwFlags = 0;
     SendInput(1, &input, sizeof(INPUT));
 
+    input.ki.dwFlags = KEYEVENTF_KEYUP;
+    SendInput(1, &input, sizeof(INPUT));
+}
+
+// 新增：按下某键
+void pressKey(int keyCode)
+{
+    WORD wKeyCode = static_cast<WORD>(keyCode);
+    INPUT input;
+    input.type = INPUT_KEYBOARD;
+    input.ki.wScan = 0;
+    input.ki.time = 0;
+    input.ki.dwExtraInfo = 0;
+
+    input.ki.wVk = wKeyCode;
+    input.ki.dwFlags = 0;
+    SendInput(1, &input, sizeof(INPUT));
+}
+
+// 新增：弹起某键
+void releaseKey(int keyCode)
+{
+    WORD wKeyCode = static_cast<WORD>(keyCode);
+    INPUT input;
+    input.type = INPUT_KEYBOARD;
+    input.ki.wScan = 0;
+    input.ki.time = 0;
+    input.ki.dwExtraInfo = 0;
+
+    input.ki.wVk = wKeyCode;
     input.ki.dwFlags = KEYEVENTF_KEYUP;
     SendInput(1, &input, sizeof(INPUT));
 }

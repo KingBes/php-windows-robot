@@ -9,7 +9,7 @@ fn send_mouse_event(x int) {
   C.mouse_event(x, 0, 0, 0, 0)
 }
 
-fn mouse_down(button string) {
+pub fn mouse_down(button string) {
   match button {
     'left' { send_mouse_event(C.MOUSEEVENTF_LEFTDOWN) }
     'right' { send_mouse_event(C.MOUSEEVENTF_RIGHTDOWN) }
@@ -18,7 +18,7 @@ fn mouse_down(button string) {
   }
 }
 
-fn mouse_up(button string) {
+pub fn mouse_up(button string) {
   match button {
     'left' { send_mouse_event(C.MOUSEEVENTF_LEFTUP) }
     'right' { send_mouse_event(C.MOUSEEVENTF_RIGHTUP) }

@@ -1,7 +1,6 @@
 module main
 
 import vrobot
-import keys
 import time
 
 struct Pos {
@@ -127,31 +126,24 @@ fn factor(tween &char, i int,steps int) f64 {
 		'ease_in_out_bounce' { vrobot.ease_in_out_bounce(n) }
 		else { panic('Tween not found') }
 	}
-	// println("m:${m}")
-	// TODO there must be better way to do this
 	return m
 }
 
-/* fn move_mouse_smooth(x int, y int, duration_ms int)
+// 按下鼠标
+@[export: 'mouse_down']
+fn mouse_down(button &char)
 {
-	start_pos := mouse_pos()
-	dist_x := f64(x) - start_pos.x
-	dist_y := f64(y) - start_pos.y
-
-	// dist := math.sqrt(math.pow(x - start_pos.x, 2) + math.pow(y - start_pos.y, 2))
-	steps := int(math.max(50.0, duration_ms * 1000 / 5))
-	dt := int(f64(duration_ms * 1000) / f64(steps))
-} */
-
-fn main() {
-	vrobot.move_mouse_smooth(0, 0, 3000, 'linear')
-	/* for {
-		onkey := keys.is_key_pressed(65)
-		if onkey > 0 {
-			println('A key')
-		} else {
-			println('not A key')
-		}
-		time.sleep(1000 * time.millisecond)
-	} */
+	vrobot.mouse_down(unsafe { button.vstring() })
 }
+
+// 弹起鼠标
+@[export: 'mouse_up']
+fn mouse_up(button &char)
+{
+	vrobot.mouse_up(unsafe { button.vstring() })
+}
+
+/* fn main() {
+	vrobot.mouse_down('left')
+	vrobot.mouse_up('left')
+} */

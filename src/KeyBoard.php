@@ -38,4 +38,28 @@ class Keyboard
     {
         $this->ffi->simulateKeyPress($key);
     }
+
+    /**
+     * 按下键盘某键 function
+     *
+     * @param integer $key
+     * @return self
+     */
+    public function pressKey(int $key): self
+    {
+        $this->ffi->pressKey($key);
+        return $this;
+    }
+
+    /**
+     * 弹起键盘某键 function
+     *
+     * @param integer $key
+     * @return self
+     */
+    public function releaseKey(int $key): self
+    {
+        $this->ffi->releaseKey($key);
+        return $this;
+    }
 }

@@ -131,15 +131,17 @@ class Mouse extends Robot
         return $this;
     }
 
-    /* public function normalize_php(int $i, int $s): float
+    public function mouse_down(string $button): self
     {
-        return $this->ffi->normalize_php($i, $s);
+        $this->ffi->mouse_down($button);
+        return $this;
     }
 
-    public function tween(string $t, float $n): float
+    public function mouse_up(string $button): self
     {
-        return $this->ffi->tween($t, $n);
-    } */
+        $this->ffi->mouse_up($button);
+        return $this;
+    }
 }
 
 /**
@@ -180,6 +182,10 @@ class Screen extends Robot
 }
 
 $Mouse = new Mouse();
-$size = $Mouse->move_mouse_smooth(0, 0, 3000, "ease_in_out_bounce");
+sleep(3);
+$Mouse->mouse_down("left");
+
+sleep(3);
+$Mouse->mouse_up("left");
 
 // var_dump($size);

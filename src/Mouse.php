@@ -143,4 +143,28 @@ class Mouse extends Robot
         $this->move_mouse_smooth($dest_x, $dest_y, $duration_ms, $tween);
         return $this;
     }
+
+    /**
+     * 鼠标按下 function
+     *
+     * @param string $button left right middle
+     * @return self
+     */
+    public function mouse_down(string $button): self
+    {
+        $this->ffi->mouse_down($button);
+        return $this;
+    }
+
+    /**
+     * 鼠标弹起 function
+     *
+     * @param string $button left right middle
+     * @return self
+     */
+    public function mouse_up(string $button): self
+    {
+        $this->ffi->mouse_up($button);
+        return $this;
+    }
 }

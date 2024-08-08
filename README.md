@@ -115,6 +115,23 @@ public function move_mouse_smooth(int $x, int $y, int $duration_ms, string $twee
 public function move_mouse_smooth_rel(int $offset_x, int $offset_y, int $duration_ms, string $tween): self
 {}
 
+/**
+ * 鼠标按下 function
+ *
+ * @param string $button left right middle
+ * @return self
+ */
+public function mouse_down(string $button): self
+{}
+
+/**
+ * 鼠标弹起 function
+ *
+ * @param string $button left right middle
+ * @return self
+ */
+public function mouse_up(string $button): self
+{}
 ```
 
 ## 屏幕
@@ -171,6 +188,24 @@ public function isKeyPressed(int $key): bool
  */
 public function onClickKey(int $key): void
 {}
+
+/**
+ * 按下键盘某键 function
+ *
+ * @param integer $key
+ * @return self
+ */
+public function pressKey(int $key): self
+{}
+
+/**
+ * 弹起键盘某键 function
+ *
+ * @param integer $key
+ * @return self
+ */
+public function releaseKey(int $key): self
+{}
 ```
 
 
@@ -186,6 +221,21 @@ $Mouse = new Mouse();
 $pos = $Mouse->mouse_pos();
 
 var_dump($pos);
+```
+
+# 实例一点二  `鼠标按下和弹起`
+
+```php
+// 引入
+use KingBes\PhpRobot\Mouse;
+
+sleep(3);// 等待
+// 按下 左键
+$Mouse->mouse_down("left");
+
+sleep(3);// 等待
+// 弹起 左键
+$Mouse->mouse_up("left");
 ```
 
 # 实例二 `监听键盘A键`
@@ -213,6 +263,22 @@ $Keyboard = new Keyboard;
 sleep(5); //延迟5秒
 
 $Keyboard->onClickKey(65)
+```
+
+# 实例三点二 `按下和弹起键盘某键`
+
+```php
+use KingBes\PhpRobot\Keyboard;
+
+$Keyboard = new Keyboard;
+
+sleep(3);// 等待
+// 按下
+$Keyboard->pressKey(65);
+
+sleep(3);// 等待
+// 弹起
+$Keyboard->releaseKey(65);
 ```
 
 # 预览补间 `可用的鼠标补间`
